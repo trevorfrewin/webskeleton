@@ -1,0 +1,81 @@
+param (
+    [Parameter(Mandatory = $true)]
+    [string]$instanceNamePrefix,  # Required parameter for instance name prefix
+    
+    [Parameter(Mandatory = $false)]
+    [string]$subscriptionId  # Optional parameter for subscription ID
+)
+
+# Variables
+$timestamp = (Get-Date).ToString("yyyyMMddHHmmss")
+$resourceGroupName = "$instanceNamePrefix$timestamp"
+$location = "UK South" # Change this to your preferred UK location (e.g., "UK South" or "UK West")
+$webAppName = "$instanceNamePrefix-webapp-$timestamp" # Web App name includes prefix and timestamp
+$sqlServerName = "$instanceNamePrefixsqlsrv$timestamp" # Lowercase and hyphen-free SQL Server name
+$sqlDatabaseName = "YourDatabaseName" # Change this to your database name
+$sqlAdminUser = "sqladmin" # Change this to your desired SQL admin username
+$sqlAdminPassword = "P@ssword123" # Change this to a strong password
+
+# Tags
+$tags = @{ Timestamp = $timestamp }
+
+# Login to Azure account and set subscription (if provided)
+if ($subscriptionId) {
+    Connect-AzAccount -SubscriptionId $subscriptionId
+} else {
+    Connect-AzAccount
+}
+
+# Function to run Az commands and handle errors
+function Run-AzCommand {
+    param (
+        [ScriptBlock]$command,
+        [string]$description
+    )
+
+    $global:ErrorActionPreference = 'Stop'  # Ensure that errors are thrown
+    $errorVariable = $null  # Initialize error variable
+
+    # Run the command
+    Try {
+        $result = &$command -ErrorAction Stop
+        Write-Host "$description succeeded."
+        if ($result) {
+            Write-Host "Result: $($result | Out-String)"
+        }
+        return $result  # Return the result of the command
+    } Catch {
+        Write-Host "$description failed."
+        Write-Host "Error: $($_.Exception.Message)"
+    }
+}
+
+# Create resource group
+$resourceGroup = Run-AzCommand -command {
+    New-AzResourceGroup -Name $resourceGroupName -Location $location -Tag $tags
+} -description "Creating resource group: $resourceGroupName"
+
+# Create Web App Service Plan (using free tier)
+Run-AzCommand -command {
+    New-AzAppServicePlan -Name "$webAppName-Plan" -Location $location -ResourceGroupName $resourceGroupName -Tier Free -Tag $tags
+} -description "Creating Service plan for Web App: $webAppName"
+
+# Create Web App
+Run-AzCommand -command {
+    New-AzWebApp -Name $webAppName -ResourceGroupName $resourceGroupName -Location $location -AppServicePlan "$webAppName-Plan" -Tag $tags
+} -description "Creating Web App: $webAppName"
+
+# Create SQL Server
+Run-AzCommand -command {
+    New-AzSqlServer -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -Location $location -SqlAdministratorCredentials (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $sqlAdminUser, (ConvertTo-SecureString $sqlAdminPassword -AsPlainText -Force)) -Tag $tags
+} -description "Creating SQL Server: $sqlServerName"
+
+# Create SQL Database (Basic tier)
+Run-AzCommand -command {
+    New-AzSqlDatabase -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -DatabaseName $sqlDatabaseName -RequestedServiceObjectiveName "Basic" -Tag $tags
+} -description "Creating SQL Database: $sqlDatabaseName"
+
+Write-Host "Resource provisioning complete."
+
+# Return the created resource group
+$resourceGroup
