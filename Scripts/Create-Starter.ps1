@@ -10,6 +10,7 @@ param (
 )
 
 . ./Generate-Password.ps1
+. ./Inject-DatabaseStructure.ps1
 
 # Variables
 $timestamp = (Get-Date).ToString("yyyyMMddHHmmss")
@@ -26,15 +27,8 @@ $sqlAdminPassword = Generate-Password -length 16
 # Tags
 $tags = @{ Timestamp = $timestamp }
 
-# Login to Azure account and set subscription (if provided)
-if ($subscriptionId) {
-    $defaultProfile = Connect-AzAccount -SubscriptionId $subscriptionId
-} else {
-    $defaultProfile = Connect-AzAccount
-}
-
 # Function to run Az commands and handle errors
-function Run-AzCommand {
+function Run-Command {
     param (
         [ScriptBlock]$command,
         [string]$description
@@ -60,13 +54,17 @@ function Run-AzCommand {
     }
 }
 
-# Create resource group
-$resourceGroup = Run-AzCommand -command {
+# Login to Azure account and set subscription
+$defaultProfile = Connect-AzAccount -SubscriptionId $subscriptionId
+
+# Get public IP address from ipinfo.io for this machine right now
+$publicIP = Invoke-RestMethod -Uri "https://ipinfo.io/ip"
+
+$resourceGroup = Run-Command -command {
     $resourceGroup = New-AzResourceGroup -Name $resourceGroupName -Location $location -Tag $tags
 } -description "Creating resource group: $resourceGroupName"
 
-# Create Key Vault
-$keyVault = Run-AzCommand -command {
+$keyVault = Run-Command -command {
    New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location -Sku Standard -EnabledForDeployment -Tag $tags
 
    #PrincipalId cannot be null
@@ -77,44 +75,39 @@ $keyVault = Run-AzCommand -command {
    Start-Sleep -Seconds 300
 } -description "Creating Key Vault named: $keyVaultName"
 
-# Write DB Admin Username to Key Vault
-$keyVaultEntry = Run-AzCommand -command {
+$keyVaultEntry = Run-Command -command {
     Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "sqlAdminUser" -SecretValue (ConvertTo-SecureString $sqlAdminUser -AsPlainText -Force) -DefaultProfile $defaultProfile
 } -description "Writing DB Admin Username to KeyVault named: $keyVaultName"
 
-# Write DB Admin Password to Key Vault
-$keyVaultEntry = Run-AzCommand -command {
+$keyVaultEntry = Run-Command -command {
     Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "sqlAdminPassword" -SecretValue (ConvertTo-SecureString $sqlAdminPassword -AsPlainText -Force) -DefaultProfile $defaultProfile
 } -description "Writing DB Password to KeyVault named: $keyVaultName"
 
-# Create Web App Service Plan (using free tier)
-Run-AzCommand -command {
+Run-Command -command {
     New-AzAppServicePlan -Name "$webAppName-Plan" -Location $location -ResourceGroupName $resourceGroupName -Tier Free -Tag $tags
 } -description "Creating Service plan for Web App: $webAppName"
 
-# Create Web App
-Run-AzCommand -command {
+Run-Command -command {
     New-AzWebApp -Name $webAppName -ResourceGroupName $resourceGroupName -Location $location -AppServicePlan "$webAppName-Plan" -Tag $tags
 } -description "Creating Web App: $webAppName"
 
-# Create SQL Server
-Run-AzCommand -command {
+Run-Command -command {
     New-AzSqlServer -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -Location $location -SqlAdministratorCredentials (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $sqlAdminUser, (ConvertTo-SecureString $sqlAdminPassword -AsPlainText -Force)) -Tag $tags
 } -description "Creating SQL Server: $sqlServerName"
 
-# Create SQL Database (Basic tier)
-Run-AzCommand -command {
+Run-Command -command {
     New-AzSqlDatabase -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -DatabaseName $sqlDatabaseName -RequestedServiceObjectiveName "Basic" -Tag $tags
 } -description "Creating SQL Database: $sqlDatabaseName"
 
-
-# Create SQL Database (Basic tier)
-Run-AzCommand -command {
-    # Get public IP address from ipinfo.io for this machine right now
-    $publicIP = Invoke-RestMethod -Uri "https://ipinfo.io/ip"
-
+Run-Command -command {
     New-AzSqlServerFirewallRule -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -FirewallRuleName DeploymentServerDatabaseAccess -StartIpAddress $publicIP -EndIpAddress $publicIP
 } -description "Creating Firewall rule for SQL Database access: $sqlDatabaseName"
+
+Run-Command -command {
+    $dataDefinitionResults = Inject-DataDefinitions -ServerName $sqlServerName -DatabaseName $sqlDatabaseName -AdminUser $sqlAdminUser -AdminPassword $sqlAdminPassword
+
+    Write-Host $dataDefinitionResults
+} -description "Inject SQL DDL"
 
 Write-Host "Resource provisioning complete."
 
