@@ -18,16 +18,16 @@ $resourceGroupName = "$instanceNamePrefix$timestamp"
 $keyVaultName = "$instanceNamePrefix$timestamp-kv"
 $keyVaultName = $keyVaultName.Substring($keyVaultName.Length - 24)
 $location = "UK South" # Change this to your preferred UK location (e.g., "UK South" or "UK West")
-$webAppName = "$instanceNamePrefix-webapp-$timestamp" # Web App name includes prefix and timestamp
-$sqlServerName = "dbms-$instanceNamePrefixsqlsrv$timestamp" # Lowercase and hyphen-free SQL Server name
-$sqlDatabaseName = "db-$instanceNamePrefix$timestamp" # Change this to your database name
+$webAppName = "$instanceNamePrefix-webapp-$timestamp"
+$sqlServerName = "dbms-$instanceNamePrefixsqlsrv$timestamp"
+$sqlDatabaseName = "db-$instanceNamePrefix$timestamp"
 $sqlAdminUser = "dbadmin-$instanceNamePrefix$timestamp"
 $sqlAdminPassword = Generate-Password -length 16
 
 # Tags
 $tags = @{ Timestamp = $timestamp }
 
-# Function to run Az commands and handle errors
+# Function to run commands (usually Az commands) and handle errors
 function Run-Command {
     param (
         [ScriptBlock]$command,
@@ -36,8 +36,8 @@ function Run-Command {
 
     Write-Host "START '$description': $(Get-Date -format 'u')"
 
-    $global:ErrorActionPreference = 'Stop'  # Ensure that errors are thrown
-    $errorVariable = $null  # Initialize error variable
+    $global:ErrorActionPreference = 'Stop'
+    $errorVariable = $null
 
     # Run the command
     Try {
@@ -46,7 +46,7 @@ function Run-Command {
         if ($result) {
             Write-Host "Result: $($result | Out-String)"
         }
-        return $result  # Return the result of the command
+        return $result
     } Catch {
         Write-Host "$description failed."
         Write-Host "Error: $($_.Exception.Message)"
