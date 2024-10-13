@@ -17,7 +17,7 @@ function Inject-DataDefinitions {
     }
     
     # Define the connection string for Invoke-Sqlcmd
-    $connectionString = "Server=tcp:$ServerName.database.windows.net,1433;Database=$DatabaseName;User ID=$AdminUser;Password=$AdminPassword;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    $connectionString = "Server=tcp:$ServerName.database.windows.net,1433;Database=$DatabaseName;User ID=$AdminUser;Password=""$AdminPassword"";Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
     $ddlFolderPath = ".\DataDefinitions"
     $ddlFiles = Get-ChildItem -Path $ddlFolderPath -Filter *.ddl | Sort-Object Name
