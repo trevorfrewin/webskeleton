@@ -64,24 +64,24 @@ $resourceGroup = Run-Command -command {
     $resourceGroup = New-AzResourceGroup -Name $resourceGroupName -Location $location -Tag $tags
 } -description "Creating resource group: $resourceGroupName"
 
-#$keyVault = Run-Command -command {
-#   New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location -Sku Standard -EnabledForDeployment -Tag $tags
-#
-#   #PrincipalId cannot be null
-#   New-AzRoleAssignment -ResourceGroupName $resourceGroupName -SignInName $userPrincipalName -RoleDefinitionName "Key Vault Secrets Officer" -AllowDelegation
-#
-#   #Await propogation time
-#   Write-Host "Sleeping for 5 minutes for propogation of RBAC on KV"
-#   Start-Sleep -Seconds 300
-#} -description "Creating Key Vault named: $keyVaultName"
-#
-#$keyVaultEntry = Run-Command -command {
-#    Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "sqlAdminUser" -SecretValue (ConvertTo-SecureString $sqlAdminUser -AsPlainText -Force) -DefaultProfile $defaultProfile
-#} -description "Writing DB Admin Username to KeyVault named: $keyVaultName"
-#
-#$keyVaultEntry = Run-Command -command {
-#    Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "sqlAdminPassword" -SecretValue (ConvertTo-SecureString $sqlAdminPassword -AsPlainText -Force) -DefaultProfile $defaultProfile
-#} -description "Writing DB Password to KeyVault named: $keyVaultName"
+$keyVault = Run-Command -command {
+   New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location -Sku Standard -EnabledForDeployment -Tag $tags
+
+   #PrincipalId cannot be null
+   New-AzRoleAssignment -ResourceGroupName $resourceGroupName -SignInName $userPrincipalName -RoleDefinitionName "Key Vault Secrets Officer" -AllowDelegation
+
+   #Await propogation time
+   Write-Host "Sleeping for 5 minutes for propogation of RBAC on KV"
+   Start-Sleep -Seconds 300
+} -description "Creating Key Vault named: $keyVaultName"
+
+$keyVaultEntry = Run-Command -command {
+    Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "sqlAdminUser" -SecretValue (ConvertTo-SecureString $sqlAdminUser -AsPlainText -Force) -DefaultProfile $defaultProfile
+} -description "Writing DB Admin Username to KeyVault named: $keyVaultName"
+
+$keyVaultEntry = Run-Command -command {
+    Set-AzKeyVaultSecret -VaultName $keyVaultName -Name "sqlAdminPassword" -SecretValue (ConvertTo-SecureString $sqlAdminPassword -AsPlainText -Force) -DefaultProfile $defaultProfile
+} -description "Writing DB Password to KeyVault named: $keyVaultName"
 
 Run-Command -command {
     New-AzAppServicePlan -Name "$webAppName-Plan" -Location $location -ResourceGroupName $resourceGroupName -Tier Free -Tag $tags
@@ -94,17 +94,15 @@ Run-Command -command {
 Run-Command -command {
     cd web
     dotnet clean
-    dotnet publish -o "$webAppName.zip"
-    chmod 777 "$webAppName.zip"
-
-    Write-Host "Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $webAppName -ArchivePath ""$webAppName.zip"" -Force"
-    Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $webAppName -ArchivePath "$webAppName.zip" -Force
+    dotnet publish -o "$webAppName.out"
+    Compress-Archive -Path "$webAppName.out/*" -DestinationPath ./$webAppName
+ 
+    Publish-AzWebApp -ResourceGroupName $resourceGroupName -Name $webAppName -ArchivePath ./$webAppName.zip -Force
+    rm -rf "$webAppName.out"
     del "$webAppName.zip"
 
     cd ..
-} -description "Packaging and Publishing Web App: $webAppName"
-
-exit
+} -description "Publishing and Packaging Web App: $webAppName"
 
 Run-Command -command {
     New-AzSqlServer -ResourceGroupName $resourceGroupName -ServerName $sqlServerName -Location $location -SqlAdministratorCredentials (New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $sqlAdminUser, (ConvertTo-SecureString $sqlAdminPassword -AsPlainText -Force)) -Tag $tags
