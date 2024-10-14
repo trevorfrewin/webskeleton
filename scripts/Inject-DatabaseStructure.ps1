@@ -19,7 +19,7 @@ function Inject-DataDefinitions {
     # Define the connection string for Invoke-Sqlcmd
     $connectionString = "Server=tcp:$ServerName.database.windows.net,1433;Database=$DatabaseName;User ID=$AdminUser;Password=""$AdminPassword"";Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
-    $ddlFolderPath = ".\DataDefinitions"
+    $ddlFolderPath = "./dataDefinitions"
     $ddlFiles = Get-ChildItem -Path $ddlFolderPath -Filter *.ddl | Sort-Object Name
     if ($ddlFiles.Count -eq 0) {
         Write-Host "No .ddl files found in the 'DataDefinitions' folder."

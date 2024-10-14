@@ -1,17 +1,17 @@
 Please select the account you want to login with.
 
 Retrieving subscriptions for the selection...
-START 'Creating resource group: fromlinuxmint20241013213833': 2024-10-13 21:38:38Z
-Creating resource group: fromlinuxmint20241013213833 succeeded.
-START 'Creating Key Vault named: nuxmint20241013213833-kv': 2024-10-13 21:38:38Z
+START 'Creating resource group: fromlinuxmint20241014205412': 2024-10-14 20:54:17Z
+Creating resource group: fromlinuxmint20241014205412 succeeded.
+START 'Creating Key Vault named: nuxmint20241014205412-kv': 2024-10-14 20:54:17Z
 Sleeping for 5 minutes for propogation of RBAC on KV
-Creating Key Vault named: nuxmint20241013213833-kv succeeded.
+Creating Key Vault named: nuxmint20241014205412-kv succeeded.
 Result: 
-Vault Name                          : nuxmint20241013213833-kv
-Resource Group Name                 : fromlinuxmint20241013213833
+Vault Name                          : nuxmint20241014205412-kv
+Resource Group Name                 : fromlinuxmint20241014205412
 Location                            : UK South
-Resource ID                         : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.KeyVault/vaults/nuxmint20241013213833-kv
-Vault URI                           : https://nuxmint20241013213833-kv.vault.azure.net/
+Resource ID                         : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.KeyVault/vaults/nuxmint20241014205412-kv
+Vault URI                           : https://nuxmint20241014205412-kv.vault.azure.net/
 Tenant ID                           : 067c3411-3954-4cf6-b6b9-0c5c1b897e48
 SKU                                 : Standard
 Enabled For Deployment?             : True
@@ -42,13 +42,13 @@ Network Rule Set                    :
 Tags                                : 
                                       Name       Value         
                                       =========  ==============
-                                      Timestamp  20241013213833
+                                      Timestamp  20241014205412
                                       
 
 
-RoleAssignmentName : b6eecda0-2a87-4ebf-b1c2-57275e679b91
-RoleAssignmentId   : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Authorization/roleAssignments/b6eecda0-2a87-4ebf-b1c2-57275e679b91
-Scope              : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833
+RoleAssignmentName : e88ce0db-3cbe-4dac-aae0-0f4ef8bd66fd
+RoleAssignmentId   : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Authorization/roleAssignments/e88ce0db-3cbe-4dac-aae0-0f4ef8bd66fd
+Scope              : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412
 DisplayName        : Trevor Frewin
 SignInName         : tjfrewin_gmail.com#EXT#@tjfrewingmail.onmicrosoft.com
 RoleDefinitionName : Key Vault Secrets Officer
@@ -61,40 +61,40 @@ ConditionVersion   :
 Condition          : 
 
 
-START 'Writing DB Admin Username to KeyVault named: nuxmint20241013213833-kv': 2024-10-13 21:44:15Z
-Writing DB Admin Username to KeyVault named: nuxmint20241013213833-kv succeeded.
+START 'Writing DB Admin Username to KeyVault named: nuxmint20241014205412-kv': 2024-10-14 20:59:52Z
+Writing DB Admin Username to KeyVault named: nuxmint20241014205412-kv succeeded.
 Result: 
-Vault Name   : nuxmint20241013213833-kv
+Vault Name   : nuxmint20241014205412-kv
 Name         : sqlAdminUser
-Version      : 5dd55c790dc9425398a1387aa95ad387
-Id           : https://nuxmint20241013213833-kv.vault.azure.net:443/secrets/sqlAdminUser/5dd55c790dc9425398a1387aa95ad387
+Version      : c6846e2daf5f42f7b5f6d4d841a1d0a2
+Id           : https://nuxmint20241014205412-kv.vault.azure.net:443/secrets/sqlAdminUser/c6846e2daf5f42f7b5f6d4d841a1d0a2
 Enabled      : True
 Expires      : 
 Not Before   : 
-Created      : 13/10/2024 20:44:15
-Updated      : 13/10/2024 20:44:15
+Created      : 14/10/2024 19:59:52
+Updated      : 14/10/2024 19:59:52
 Content Type : 
 Tags         : 
 
 
-START 'Writing DB Password to KeyVault named: nuxmint20241013213833-kv': 2024-10-13 21:44:16Z
-Writing DB Password to KeyVault named: nuxmint20241013213833-kv succeeded.
+START 'Writing DB Password to KeyVault named: nuxmint20241014205412-kv': 2024-10-14 20:59:53Z
+Writing DB Password to KeyVault named: nuxmint20241014205412-kv succeeded.
 Result: 
-Vault Name   : nuxmint20241013213833-kv
+Vault Name   : nuxmint20241014205412-kv
 Name         : sqlAdminPassword
-Version      : f565b3bbfe7743a181ea9126969e966a
-Id           : https://nuxmint20241013213833-kv.vault.azure.net:443/secrets/sqlAdminPassword/f565b3bbfe7743a181ea9126969e966a
+Version      : 8d1de4aaf62e409e99a388851195a1b0
+Id           : https://nuxmint20241014205412-kv.vault.azure.net:443/secrets/sqlAdminPassword/8d1de4aaf62e409e99a388851195a1b0
 Enabled      : True
 Expires      : 
 Not Before   : 
-Created      : 13/10/2024 20:44:16
-Updated      : 13/10/2024 20:44:16
+Created      : 14/10/2024 19:59:53
+Updated      : 14/10/2024 19:59:53
 Content Type : 
 Tags         : 
 
 
-START 'Creating Service plan for Web App: fromlinuxmint-webapp-20241013213833': 2024-10-13 21:44:16Z
-Creating Service plan for Web App: fromlinuxmint-webapp-20241013213833 succeeded.
+START 'Creating Service plan for Web App: fromlinuxmint-webapp-20241014205412': 2024-10-14 20:59:53Z
+Creating Service plan for Web App: fromlinuxmint-webapp-20241014205412 succeeded.
 Result: 
 AdminSiteName             : 
 WorkerTierName            : 
@@ -110,7 +110,7 @@ NumberOfSites             : 0
 IsSpot                    : False
 SpotExpirationTime        : 
 FreeOfferExpirationTime   : 
-ResourceGroup             : fromlinuxmint20241013213833
+ResourceGroup             : fromlinuxmint20241014205412
 Reserved                  : False
 IsXenon                   : False
 HyperV                    : 
@@ -120,12 +120,12 @@ ProvisioningState         : Succeeded
 KubeEnvironmentProfile    : 
 Sku                       : Microsoft.Azure.Management.WebSites.Models.SkuDescription
 ExtendedLocation          : 
-Id                        : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241013213833-Plan
-Name                      : fromlinuxmint-webapp-20241013213833-Plan
+Id                        : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241014205412-Plan
+Name                      : fromlinuxmint-webapp-20241014205412-Plan
 Kind                      : app
 Location                  : UK South
 Type                      : Microsoft.Web/serverfarms
-Tags                      : {[Timestamp, 20241013213833]}
+Tags                      : {[Timestamp, 20241014205412]}
 
 
 
@@ -143,7 +143,7 @@ NumberOfSites             : 0
 IsSpot                    : False
 SpotExpirationTime        : 
 FreeOfferExpirationTime   : 
-ResourceGroup             : fromlinuxmint20241013213833
+ResourceGroup             : fromlinuxmint20241014205412
 Reserved                  : False
 IsXenon                   : False
 HyperV                    : 
@@ -153,15 +153,16 @@ ProvisioningState         : Succeeded
 KubeEnvironmentProfile    : 
 Sku                       : Microsoft.Azure.Management.WebSites.Models.SkuDescription
 ExtendedLocation          : 
-Id                        : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241013213833-Plan
-Name                      : fromlinuxmint-webapp-20241013213833-Plan
+Id                        : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241014205412-Plan
+Name                      : fromlinuxmint-webapp-20241014205412-Plan
 Kind                      : app
 Location                  : UK South
 Type                      : Microsoft.Web/serverfarms
-Tags                      : {[Timestamp, 20241013213833]}
+Tags                      : {[Timestamp, 20241014205412]}
 
-START 'Creating Web App: fromlinuxmint-webapp-20241013213833': 2024-10-13 21:44:19Z
-Creating Web App: fromlinuxmint-webapp-20241013213833 succeeded.                                                        
+START 'Creating Web App: fromlinuxmint-webapp-20241014205412': 2024-10-14 20:59:57Z
+WARNING: Failed to add git remote to directory '/home/trevorf/Documents/Work/webskeleton' with error 'An error occurred trying to start process 'git.exe' with working directory '/home/trevorf/Documents/Work/webskeleton'. No such file or directory'
+Creating Web App: fromlinuxmint-webapp-20241014205412 succeeded.                                                        
 Result:                                                                                                                 
 GitRemoteName               : 
 GitRemoteUri                : 
@@ -171,18 +172,18 @@ AzureStorageAccounts        :
 AzureStoragePath            : 
 VnetInfo                    : 
 State                       : Running
-HostNames                   : {fromlinuxmint-webapp-20241013213833.azurewebsites.net}
-RepositorySiteName          : fromlinuxmint-webapp-20241013213833
+HostNames                   : {fromlinuxmint-webapp-20241014205412.azurewebsites.net}
+RepositorySiteName          : fromlinuxmint-webapp-20241014205412
 UsageState                  : Normal
 Enabled                     : True
-EnabledHostNames            : {fromlinuxmint-webapp-20241013213833.azurewebsites.net, fromlinuxmint-webapp-20241013213833.scm.azurewebsites.net}
+EnabledHostNames            : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
 AvailabilityState           : Normal
-HostNameSslStates           : {fromlinuxmint-webapp-20241013213833.azurewebsites.net, fromlinuxmint-webapp-20241013213833.scm.azurewebsites.net}
-ServerFarmId                : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241013213833-Plan
+HostNameSslStates           : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
+ServerFarmId                : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241014205412-Plan
 Reserved                    : False
 IsXenon                     : False
 HyperV                      : 
-LastModifiedTimeUtc         : 13/10/2024 20:44:23
+LastModifiedTimeUtc         : 14/10/2024 20:00:00
 SiteConfig                  : Microsoft.Azure.Management.WebSites.Models.SiteConfig
 TrafficManagerHostNames     : 
 ScmSiteAlsoStopped          : False
@@ -201,9 +202,9 @@ DailyMemoryTimeQuota        : 0
 SuspendedTill               : 
 MaxNumberOfWorkers          : 
 CloningInfo                 : 
-ResourceGroup               : fromlinuxmint20241013213833
+ResourceGroup               : fromlinuxmint20241014205412
 IsDefaultContainer          : 
-DefaultHostName             : fromlinuxmint-webapp-20241013213833.azurewebsites.net
+DefaultHostName             : fromlinuxmint-webapp-20241014205412.azurewebsites.net
 SlotSwapStatus              : 
 HttpsOnly                   : False
 RedundancyMode              : 
@@ -213,12 +214,12 @@ KeyVaultReferenceIdentity   :
 VirtualNetworkSubnetId      : 
 Identity                    : 
 ExtendedLocation            : 
-Id                          : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Web/sites/fromlinuxmint-webapp-20241013213833
-Name                        : fromlinuxmint-webapp-20241013213833
+Id                          : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/sites/fromlinuxmint-webapp-20241014205412
+Name                        : fromlinuxmint-webapp-20241014205412
 Kind                        : app
 Location                    : UK South
 Type                        : Microsoft.Web/sites
-Tags                        : {[Timestamp, 20241013213833]}
+Tags                        : {[Timestamp, 20241014205412]}
 
 
 GitRemoteName               :                                                                                           
@@ -229,18 +230,18 @@ AzureStorageAccounts        :
 AzureStoragePath            :                                                                                           
 VnetInfo                    :                                                                                           
 State                       : Running                                                                                   
-HostNames                   : {fromlinuxmint-webapp-20241013213833.azurewebsites.net}                                   
-RepositorySiteName          : fromlinuxmint-webapp-20241013213833                                                       
+HostNames                   : {fromlinuxmint-webapp-20241014205412.azurewebsites.net}                                   
+RepositorySiteName          : fromlinuxmint-webapp-20241014205412                                                       
 UsageState                  : Normal                                                                                    
 Enabled                     : True                                                                                      
-EnabledHostNames            : {fromlinuxmint-webapp-20241013213833.azurewebsites.net, fromlinuxmint-webapp-20241013213833.scm.azurewebsites.net}
+EnabledHostNames            : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
 AvailabilityState           : Normal                                                                                    
-HostNameSslStates           : {fromlinuxmint-webapp-20241013213833.azurewebsites.net, fromlinuxmint-webapp-20241013213833.scm.azurewebsites.net}
-ServerFarmId                : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241013213833-Plan
+HostNameSslStates           : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
+ServerFarmId                : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241014205412-Plan
 Reserved                    : False                                                                                     
 IsXenon                     : False                                                                                     
 HyperV                      :                                                                                           
-LastModifiedTimeUtc         : 13/10/2024 20:44:23                                                                       
+LastModifiedTimeUtc         : 14/10/2024 20:00:00                                                                       
 SiteConfig                  : Microsoft.Azure.Management.WebSites.Models.SiteConfig                                     
 TrafficManagerHostNames     :                                                                                           
 ScmSiteAlsoStopped          : False                                                                                     
@@ -253,17 +254,17 @@ ClientCertExclusionPaths    :
 HostNamesDisabled           : False                                                                                     
 CustomDomainVerificationId  : 26BB5AD803CA4442A35558F622B8E1377352222D20ECBBB034AAEFEB080D4195                          
 OutboundIpAddresses         : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,51.104.28.67
-PossibleOutboundIpAddresses : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,20.49.219.249,20.49.220.0,51.11.170.17,20.49.219.219,20.49.220.26,20.49.220.35,20.49.220.58,20.49.2
-                              20.62,20.49.220.72,20.49.220.74,20.49.220.91,20.49.220.104,20.49.220.106,20.49.220.119,20.49.220.122,20.49.217.121,20.49.220.124,20.49.220.126,20.49.220.140,20.49.220.158,20.49.220.16
-                              0,51.132.44.96,51.132.44.223,51.132.45.53,51.104.28.67                                    
+PossibleOutboundIpAddresses : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,20.49.219.249,20.49.220.0,51.11.170.17,20.49.219.219,20.49.220.26,20.49.220.35,20.49.220.58,20.49.220.62,20.49.220.72,20.
+                              49.220.74,20.49.220.91,20.49.220.104,20.49.220.106,20.49.220.119,20.49.220.122,20.49.217.121,20.49.220.124,20.49.220.126,20.49.220.140,20.49.220.158,20.49.220.160,51.132.44.96,51.132.44.223,51.132.45.53,51
+                              .104.28.67                                                                                
 ContainerSize               : 0                                                                                         
 DailyMemoryTimeQuota        : 0                                                                                         
 SuspendedTill               :                                                                                           
 MaxNumberOfWorkers          :                                                                                           
 CloningInfo                 :                                                                                           
-ResourceGroup               : fromlinuxmint20241013213833                                                               
+ResourceGroup               : fromlinuxmint20241014205412                                                               
 IsDefaultContainer          :                                                                                           
-DefaultHostName             : fromlinuxmint-webapp-20241013213833.azurewebsites.net                                     
+DefaultHostName             : fromlinuxmint-webapp-20241014205412.azurewebsites.net                                     
 SlotSwapStatus              :                                                                                           
 HttpsOnly                   : False                                                                                     
 RedundancyMode              :                                                                                           
@@ -273,26 +274,172 @@ KeyVaultReferenceIdentity   :
 VirtualNetworkSubnetId      :                                                                                           
 Identity                    :                                                                                           
 ExtendedLocation            :                                                                                           
-Id                          : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Web/sites/fromlinuxmint-webapp-20241013213833
-Name                        : fromlinuxmint-webapp-20241013213833                                                       
+Id                          : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/sites/fromlinuxmint-webapp-20241014205412
+Name                        : fromlinuxmint-webapp-20241014205412                                                       
 Kind                        : app                                                                                       
 Location                    : UK South                                                                                  
 Type                        : Microsoft.Web/sites                                                                       
-Tags                        : {[Timestamp, 20241013213833]}                                                             
+Tags                        : {[Timestamp, 20241014205412]}                                                             
                                                                                                                         
-START 'Creating SQL Server: dbms-20241013213833': 2024-10-13 21:44:42Z                                                  
-Creating SQL Server: dbms-20241013213833 succeeded.                                                                     
+START 'Publishing and Packaging Web App: fromlinuxmint-webapp-20241014205412': 2024-10-14 21:00:20Z                     
+Publishing and Packaging Web App: fromlinuxmint-webapp-20241014205412 succeeded.                                        
+Result: MSBuild version 17.8.5+b5265ef37 for .NET                                                                       
+Build started 14/10/2024 21:00:20.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.64
+MSBuild version 17.8.5+b5265ef37 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  web -> /home/trevorf/Documents/Work/webskeleton/web/bin/Release/net8.0/web.dll
+  web -> /home/trevorf/Documents/Work/webskeleton/web/fromlinuxmint-webapp-20241014205412.out/
+
+GitRemoteName               : 
+GitRemoteUri                : 
+GitRemoteUsername           : 
+GitRemotePassword           : 
+AzureStorageAccounts        : 
+AzureStoragePath            : {}
+VnetInfo                    : 
+State                       : Running
+HostNames                   : {fromlinuxmint-webapp-20241014205412.azurewebsites.net}
+RepositorySiteName          : fromlinuxmint-webapp-20241014205412
+UsageState                  : Normal
+Enabled                     : True
+EnabledHostNames            : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
+AvailabilityState           : Normal
+HostNameSslStates           : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
+ServerFarmId                : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241014205412-Plan
+Reserved                    : False
+IsXenon                     : False
+HyperV                      : 
+LastModifiedTimeUtc         : 14/10/2024 20:00:00
+SiteConfig                  : Microsoft.Azure.Management.WebSites.Models.SiteConfig
+TrafficManagerHostNames     : 
+ScmSiteAlsoStopped          : False
+TargetSwapSlot              : 
+HostingEnvironmentProfile   : 
+ClientAffinityEnabled       : True
+ClientCertEnabled           : False
+ClientCertMode              : 
+ClientCertExclusionPaths    : 
+HostNamesDisabled           : False
+CustomDomainVerificationId  : 26BB5AD803CA4442A35558F622B8E1377352222D20ECBBB034AAEFEB080D4195
+OutboundIpAddresses         : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,51.104.28.67
+PossibleOutboundIpAddresses : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,20.49.219.249,20.49.220.0,51.11.170.17,20.49.219.219,20.49.220.26,20.49.220.35,20.49.220.58,20.49.220.62,20.49.220.72,20.49.220.74,20.49.220.91,20.49.220.104,20.49.220.106,20.49.220.119,20.49.220.122,20.49.217.121,20.49.220.124,20.49.220.126,20.49.220.140,20.49.220.158,20.49.220.160,51.132.44.96,51.132.44.223,51.132.45.53,51.104.28.67
+ContainerSize               : 0
+DailyMemoryTimeQuota        : 0
+SuspendedTill               : 
+MaxNumberOfWorkers          : 
+CloningInfo                 : 
+ResourceGroup               : fromlinuxmint20241014205412
+IsDefaultContainer          : 
+DefaultHostName             : fromlinuxmint-webapp-20241014205412.azurewebsites.net
+SlotSwapStatus              : 
+HttpsOnly                   : False
+RedundancyMode              : 
+InProgressOperationId       : 
+StorageAccountRequired      : 
+KeyVaultReferenceIdentity   : 
+VirtualNetworkSubnetId      : 
+Identity                    : 
+ExtendedLocation            : 
+Id                          : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/sites/fromlinuxmint-webapp-20241014205412
+Name                        : fromlinuxmint-webapp-20241014205412
+Kind                        : app
+Location                    : UK South
+Type                        : Microsoft.Web/sites
+Tags                        : {[Timestamp, 20241014205412]}
+
+
+MSBuild version 17.8.5+b5265ef37 for .NET                                                                               
+Build started 14/10/2024 21:00:20.                                                                                      
+                                                                                                                        
+Build succeeded.                                                                                                        
+    0 Warning(s)                                                                                                        
+    0 Error(s)                                                                                                          
+                                                                                                                        
+Time Elapsed 00:00:00.64                                                                                                
+MSBuild version 17.8.5+b5265ef37 for .NET                                                                               
+  Determining projects to restore...                                                                                    
+  All projects are up-to-date for restore.                                                                              
+  web -> /home/trevorf/Documents/Work/webskeleton/web/bin/Release/net8.0/web.dll                                        
+  web -> /home/trevorf/Documents/Work/webskeleton/web/fromlinuxmint-webapp-20241014205412.out/                          
+GitRemoteName               :                                                                                           
+GitRemoteUri                :                                                                                           
+GitRemoteUsername           :                                                                                           
+GitRemotePassword           :                                                                                           
+AzureStorageAccounts        :                                                                                           
+AzureStoragePath            : {}                                                                                        
+VnetInfo                    :                                                                                           
+State                       : Running                                                                                   
+HostNames                   : {fromlinuxmint-webapp-20241014205412.azurewebsites.net}                                   
+RepositorySiteName          : fromlinuxmint-webapp-20241014205412                                                       
+UsageState                  : Normal                                                                                    
+Enabled                     : True                                                                                      
+EnabledHostNames            : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
+AvailabilityState           : Normal                                                                                    
+HostNameSslStates           : {fromlinuxmint-webapp-20241014205412.azurewebsites.net, fromlinuxmint-webapp-20241014205412.scm.azurewebsites.net}
+ServerFarmId                : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/serverfarms/fromlinuxmint-webapp-20241014205412-Plan
+Reserved                    : False                                                                                     
+IsXenon                     : False                                                                                     
+HyperV                      :                                                                                           
+LastModifiedTimeUtc         : 14/10/2024 20:00:00                                                                       
+SiteConfig                  : Microsoft.Azure.Management.WebSites.Models.SiteConfig                                     
+TrafficManagerHostNames     :                                                                                           
+ScmSiteAlsoStopped          : False                                                                                     
+TargetSwapSlot              :                                                                                           
+HostingEnvironmentProfile   :                                                                                           
+ClientAffinityEnabled       : True                                                                                      
+ClientCertEnabled           : False                                                                                     
+ClientCertMode              :                                                                                           
+ClientCertExclusionPaths    :                                                                                           
+HostNamesDisabled           : False                                                                                     
+CustomDomainVerificationId  : 26BB5AD803CA4442A35558F622B8E1377352222D20ECBBB034AAEFEB080D4195                          
+OutboundIpAddresses         : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,51.104.28.67
+PossibleOutboundIpAddresses : 20.49.219.180,20.49.219.184,20.49.219.189,20.49.219.195,20.49.219.201,20.49.218.230,20.49.219.249,20.49.220.0,51.11.170.17,20.49.219.219,20.49.220.26,20.49.220.35,20.49.220.58,20.49.220.62,20.49.220.72,20.
+                              49.220.74,20.49.220.91,20.49.220.104,20.49.220.106,20.49.220.119,20.49.220.122,20.49.217.121,20.49.220.124,20.49.220.126,20.49.220.140,20.49.220.158,20.49.220.160,51.132.44.96,51.132.44.223,51.132.45.53,51
+                              .104.28.67                                                                                
+ContainerSize               : 0                                                                                         
+DailyMemoryTimeQuota        : 0                                                                                         
+SuspendedTill               :                                                                                           
+MaxNumberOfWorkers          :                                                                                           
+CloningInfo                 :                                                                                           
+ResourceGroup               : fromlinuxmint20241014205412                                                               
+IsDefaultContainer          :                                                                                           
+DefaultHostName             : fromlinuxmint-webapp-20241014205412.azurewebsites.net                                     
+SlotSwapStatus              :                                                                                           
+HttpsOnly                   : False                                                                                     
+RedundancyMode              :                                                                                           
+InProgressOperationId       :                                                                                           
+StorageAccountRequired      :                                                                                           
+KeyVaultReferenceIdentity   :                                                                                           
+VirtualNetworkSubnetId      :                                                                                           
+Identity                    :                                                                                           
+ExtendedLocation            :                                                                                           
+Id                          : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Web/sites/fromlinuxmint-webapp-20241014205412
+Name                        : fromlinuxmint-webapp-20241014205412                                                       
+Kind                        : app                                                                                       
+Location                    : UK South                                                                                  
+Type                        : Microsoft.Web/sites                                                                       
+Tags                        : {[Timestamp, 20241014205412]}                                                             
+                                                                                                                        
+START 'Creating SQL Server: dbms-20241014205412': 2024-10-14 21:00:32Z                                                  
+Creating SQL Server: dbms-20241014205412 succeeded.                                                                     
 Result:                                                                                                                 
-ResourceGroupName             : fromlinuxmint20241013213833
-ServerName                    : dbms-20241013213833
+ResourceGroupName             : fromlinuxmint20241014205412
+ServerName                    : dbms-20241014205412
 Location                      : uksouth
-SqlAdministratorLogin         : dbadmin-fromlinuxmint20241013213833
+SqlAdministratorLogin         : dbadmin-fromlinuxmint20241014205412
 SqlAdministratorPassword      : 
 ServerVersion                 : 12.0
-Tags                          : {[Timestamp, 20241013213833]}
+Tags                          : {[Timestamp, 20241014205412]}
 Identity                      : 
-FullyQualifiedDomainName      : dbms-20241013213833.database.windows.net
-ResourceId                    : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Sql/servers/dbms-20241013213833
+FullyQualifiedDomainName      : dbms-20241014205412.database.windows.net
+ResourceId                    : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Sql/servers/dbms-20241014205412
 MinimalTlsVersion             : 1.2
 PublicNetworkAccess           : Enabled
 RestrictOutboundNetworkAccess : Disabled
@@ -302,16 +449,16 @@ KeyId                         :
 FederatedClientId             : 
 
 
-ResourceGroupName             : fromlinuxmint20241013213833                                                             
-ServerName                    : dbms-20241013213833                                                                     
+ResourceGroupName             : fromlinuxmint20241014205412                                                             
+ServerName                    : dbms-20241014205412                                                                     
 Location                      : uksouth                                                                                 
-SqlAdministratorLogin         : dbadmin-fromlinuxmint20241013213833                                                     
+SqlAdministratorLogin         : dbadmin-fromlinuxmint20241014205412                                                     
 SqlAdministratorPassword      :                                                                                         
 ServerVersion                 : 12.0                                                                                    
-Tags                          : {[Timestamp, 20241013213833]}                                                           
+Tags                          : {[Timestamp, 20241014205412]}                                                           
 Identity                      :                                                                                         
-FullyQualifiedDomainName      : dbms-20241013213833.database.windows.net                                                
-ResourceId                    : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Sql/servers/dbms-20241013213833
+FullyQualifiedDomainName      : dbms-20241014205412.database.windows.net                                                
+ResourceId                    : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Sql/servers/dbms-20241014205412
 MinimalTlsVersion             : 1.2                                                                                     
 PublicNetworkAccess           : Enabled                                                                                 
 RestrictOutboundNetworkAccess : Disabled                                                                                
@@ -320,28 +467,28 @@ PrimaryUserAssignedIdentityId :
 KeyId                         :                                                                                         
 FederatedClientId             :                                                                                         
                                                                                                                         
-START 'Creating SQL Database: db-fromlinuxmint20241013213833': 2024-10-13 21:45:49Z                                     
-Creating SQL Database: db-fromlinuxmint20241013213833 succeeded.                                                        
+START 'Creating SQL Database: db-fromlinuxmint20241014205412': 2024-10-14 21:01:39Z                                     
+Creating SQL Database: db-fromlinuxmint20241014205412 succeeded.                                                        
 Result:                                                                                                                 
-ResourceGroupName                : fromlinuxmint20241013213833
-ServerName                       : dbms-20241013213833
-DatabaseName                     : db-fromlinuxmint20241013213833
+ResourceGroupName                : fromlinuxmint20241014205412
+ServerName                       : dbms-20241014205412
+DatabaseName                     : db-fromlinuxmint20241014205412
 Location                         : uksouth
-DatabaseId                       : ed3b52cc-8fac-4fc6-9273-d610cce1e47b
+DatabaseId                       : ef79f459-195e-41fd-9e79-8f52c54a776c
 Edition                          : Basic
 CollationName                    : SQL_Latin1_General_CP1_CI_AS
 CatalogCollation                 : 
 MaxSizeBytes                     : 2147483648
 Status                           : Online
-CreationDate                     : 13/10/2024 20:46:33
+CreationDate                     : 14/10/2024 20:02:48
 CurrentServiceObjectiveId        : 00000000-0000-0000-0000-000000000000
 CurrentServiceObjectiveName      : Basic
 RequestedServiceObjectiveName    : Basic
 RequestedServiceObjectiveId      : 
 ElasticPoolName                  : 
 EarliestRestoreDate              : 
-Tags                             : {[Timestamp, 20241013213833]}
-ResourceId                       : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Sql/servers/dbms-20241013213833/databases/db-fromlinuxmint20241013213833
+Tags                             : {[Timestamp, 20241014205412]}
+ResourceId                       : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Sql/servers/dbms-20241014205412/databases/db-fromlinuxmint20241014205412
 CreateMode                       : 
 ReadScale                        : Disabled
 ZoneRedundant                    : False
@@ -372,26 +519,25 @@ ManualCutover                    :
 PerformCutover                   : 
 
 
-ResourceGroupName                : fromlinuxmint20241013213833                                                          
-ServerName                       : dbms-20241013213833                                                                  
-DatabaseName                     : db-fromlinuxmint20241013213833                                                       
+ResourceGroupName                : fromlinuxmint20241014205412                                                          
+ServerName                       : dbms-20241014205412                                                                  
+DatabaseName                     : db-fromlinuxmint20241014205412                                                       
 Location                         : uksouth                                                                              
-DatabaseId                       : ed3b52cc-8fac-4fc6-9273-d610cce1e47b                                                 
+DatabaseId                       : ef79f459-195e-41fd-9e79-8f52c54a776c                                                 
 Edition                          : Basic                                                                                
 CollationName                    : SQL_Latin1_General_CP1_CI_AS                                                         
 CatalogCollation                 :                                                                                      
 MaxSizeBytes                     : 2147483648                                                                           
 Status                           : Online                                                                               
-CreationDate                     : 13/10/2024 20:46:33                                                                  
+CreationDate                     : 14/10/2024 20:02:48                                                                  
 CurrentServiceObjectiveId        : 00000000-0000-0000-0000-000000000000                                                 
 CurrentServiceObjectiveName      : Basic                                                                                
 RequestedServiceObjectiveName    : Basic                                                                                
 RequestedServiceObjectiveId      :                                                                                      
 ElasticPoolName                  :                                                                                      
 EarliestRestoreDate              :                                                                                      
-Tags                             : {[Timestamp, 20241013213833]}                                                        
-ResourceId                       : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241013213833/providers/Microsoft.Sql/servers/dbms-20241013213833/databases/db-fromlinuxmint20241
-                                   013213833                                                                            
+Tags                             : {[Timestamp, 20241014205412]}                                                        
+ResourceId                       : /subscriptions/c45d75f1-2c40-46c1-97d9-429729735b96/resourceGroups/fromlinuxmint20241014205412/providers/Microsoft.Sql/servers/dbms-20241014205412/databases/db-fromlinuxmint20241014205412
 CreateMode                       :                                                                                      
 ReadScale                        : Disabled                                                                             
 ZoneRedundant                    : False                                                                                
@@ -421,23 +567,23 @@ FreeLimitExhaustionBehavior      :
 ManualCutover                    :                                                                                      
 PerformCutover                   :                                                                                      
                                                                                                                         
-START 'Creating Firewall rule for SQL Database access: db-fromlinuxmint20241013213833': 2024-10-13 21:46:36Z            
-Creating Firewall rule for SQL Database access: db-fromlinuxmint20241013213833 succeeded.                               
+START 'Creating Firewall rule for SQL Database access: db-fromlinuxmint20241014205412': 2024-10-14 21:02:56Z            
+Creating Firewall rule for SQL Database access: db-fromlinuxmint20241014205412 succeeded.                               
 Result:                                                                                                                 
-ResourceGroupName : fromlinuxmint20241013213833
-ServerName        : dbms-20241013213833
+ResourceGroupName : fromlinuxmint20241014205412
+ServerName        : dbms-20241014205412
 StartIpAddress    : 62.49.157.168
 EndIpAddress      : 62.49.157.168
 FirewallRuleName  : DeploymentServerDatabaseAccess
 
 
-ResourceGroupName : fromlinuxmint20241013213833                                                                         
-ServerName        : dbms-20241013213833                                                                                 
+ResourceGroupName : fromlinuxmint20241014205412                                                                         
+ServerName        : dbms-20241014205412                                                                                 
 StartIpAddress    : 62.49.157.168                                                                                       
 EndIpAddress      : 62.49.157.168                                                                                       
 FirewallRuleName  : DeploymentServerDatabaseAccess                                                                      
                                                                                                                         
-START 'Inject SQL DDL': 2024-10-13 21:46:37Z                                                                            
+START 'Inject SQL DDL': 2024-10-14 21:02:58Z                                                                            
 Executing DDL file: 050-CreateTable-Employees.ddl                                                                       
 Successfully executed: 050-CreateTable-Employees.ddl                                                                    
 Executing DDL file: 060-CreateTable-EmployeeAddresses.ddl                                                               

@@ -21,7 +21,7 @@ Future iterations should
 Using the script is simple. It has 3 required parameters as described here:
 
 ```Bash
-./Create-Starter.ps1 instanceNamePrefix subscriptionId userPrincipalName
+./scripts/Create-Starter.ps1 instanceNamePrefix subscriptionId userPrincipalName
 ```
 
 The parameters are:
