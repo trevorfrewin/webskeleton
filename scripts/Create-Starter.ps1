@@ -17,8 +17,10 @@ $timestamp = (Get-Date).ToString("yyyyMMddHHmmss")
 $resourceGroupName = "$instanceNamePrefix$timestamp"
 $keyVaultName = "$instanceNamePrefix$timestamp-kv"
 $keyVaultName = $keyVaultName.Substring($keyVaultName.Length - 24)
+$global:keyVaultId = "None yet"
 $location = "UK South" # Change this to your preferred UK location (e.g., "UK South" or "UK West")
 $webAppName = "$instanceNamePrefix-webapp-$timestamp"
+$keyVaultConnectorName = "$instanceNamePrefix.webapp.$timestamp.kv.connector"
 $sqlServerName = "dbms-$instanceNamePrefixsqlsrv$timestamp"
 $sqlDatabaseName = "db-$instanceNamePrefix$timestamp"
 $sqlAdminUser = "dbadmin-$instanceNamePrefix$timestamp"
@@ -54,6 +56,11 @@ function Run-Command {
     }
 }
 
+# Ensure the Az.ServiceLinker module is installed for New-AzServiceLinkerForWebApp
+if (-not (Get-Module -ListAvailable -Name Az.ServiceLinker)) {
+    Install-Module -Name Az.ServiceLinker -Force -AllowClobber
+}
+
 # Login to Azure account and set subscription
 $defaultProfile = Connect-AzAccount -SubscriptionId $subscriptionId
 
@@ -65,13 +72,13 @@ $resourceGroup = Run-Command -command {
 } -description "Creating resource group: $resourceGroupName"
 
 $keyVault = Run-Command -command {
-   New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location -Sku Standard -EnabledForDeployment -Tag $tags
+   $keyVault = New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location -Sku Standard -EnabledForDeployment -Tag $tags
+   $global:keyVaultId = $keyVault.ResourceId
 
-   #PrincipalId cannot be null
    New-AzRoleAssignment -ResourceGroupName $resourceGroupName -SignInName $userPrincipalName -RoleDefinitionName "Key Vault Secrets Officer" -AllowDelegation
 
-   #Await propogation time
-   Write-Host "Sleeping for 5 minutes for propogation of RBAC on KV"
+   # Await propogation time
+   Write-Host "Sleeping for 5 minutes for propogation of RBAC on KV, and KV ResourceID to be 'public'"
    Start-Sleep -Seconds 300
 } -description "Creating Key Vault named: $keyVaultName"
 
@@ -85,11 +92,18 @@ $keyVaultEntry = Run-Command -command {
 
 Run-Command -command {
     New-AzAppServicePlan -Name "$webAppName-Plan" -Location $location -ResourceGroupName $resourceGroupName -Tier Free -Tag $tags
-} -description "Creating Service plan for Web App: $webAppName"
+} -description "Creating Service plan for Web App: $webAppName-Plan"
 
 Run-Command -command {
     New-AzWebApp -Name $webAppName -ResourceGroupName $resourceGroupName -Location $location -AppServicePlan "$webAppName-Plan" -Tag $tags
 } -description "Creating Web App: $webAppName"
+
+Run-Command -command {
+    $linkerTarget = New-AzServiceLinkerAzureResourceObject -Id $global:keyVaultId
+    $systemIdentityAuthInfo = New-AzServiceLinkerSystemAssignedIdentityAuthInfoObject
+
+    New-AzServiceLinkerForWebApp -ResourceGroupName $resourceGroupName -LinkerName $keyVaultConnectorName -TargetService $linkerTarget -ClientType dotnet -WebApp $webAppName -AuthInfo $systemIdentityAuthInfo
+} -description "Creating Web App to KeyVault Connector: $keyVaultConnectorName"
 
 Run-Command -command {
     cd web
