@@ -21,6 +21,9 @@ $global:keyVaultId = "None yet"
 $location = "UK South" # Change this to your preferred UK location (e.g., "UK South" or "UK West")
 $webAppName = "$instanceNamePrefix-webapp-$timestamp"
 $keyVaultConnectorName = "$instanceNamePrefix.webapp.$timestamp.kv.connector"
+$storageAccountName = ($instanceNamePrefix + "storage" + $timestamp).ToLower()
+$storageAccountName = $storageAccountName.Substring($storageAccountName.Length - 24)
+$blobContainerName = "myblobcontainer"
 $sqlServerName = "dbms-$instanceNamePrefixsqlsrv$timestamp"
 $sqlDatabaseName = "db-$instanceNamePrefix$timestamp"
 $sqlAdminUser = "dbadmin-$instanceNamePrefix$timestamp"
@@ -70,6 +73,14 @@ $publicIP = Invoke-RestMethod -Uri "https://ipinfo.io/ip"
 $resourceGroup = Run-Command -command {
     $resourceGroup = New-AzResourceGroup -Name $resourceGroupName -Location $location -Tag $tags
 } -description "Creating resource group: $resourceGroupName"
+
+$storageAccount = Run-Command -command {
+    New-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -Location $location -SkuName Standard_LRS -Kind StorageV2
+} -description "Creating storage account: $storageAccountName"
+
+$blobContainer = Run-Command -command {
+    New-AzStorageContainer -Name $blobContainerName -Context $storageAccount.Context -Permission Off
+} -description "Creating BLOB container in storage account named: $storageAccountName"
 
 $keyVault = Run-Command -command {
    $keyVault = New-AzKeyVault -ResourceGroupName $resourceGroupName -VaultName $keyVaultName -Location $location -Sku Standard -EnabledForDeployment -Tag $tags
