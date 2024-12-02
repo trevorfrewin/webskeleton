@@ -1,8 +1,51 @@
-﻿@{
+﻿@model WebSkeletonSPA.Models.HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
+<script>
+    function filterBlobs() {
+        const prefixField = document.getElementById('prefixField');
+        const filter = prefixField.value;
+
+        // Post back to the controller with the search value
+        fetch('/Home/Filter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ prefix: filter })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const blobList = document.getElementById('blobList');
+            blobList.innerHTML = '';
+
+            data.forEach(blob => {
+                const li = document.createElement('li');
+                li.textContent = blob.name;
+                blobList.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <div>
+        <input type="text" id="prefixField" placeholder="BLOB prefix" oninput="filterBlobs()" />
+    </div>
+    <div>Blobs
+        <ul id="blobList">
+            @foreach (var blobName in Model.BlobNames.Select(item => (string)item.Name))
+            {
+            <li>
+                @Html.DisplayFor(listItem => blobName)
+            </li>
+            }
+        </ul>
+    </div>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

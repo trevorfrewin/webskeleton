@@ -1,7 +1,19 @@
+using WebSkeletonSPA.Utilities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+var blobConnectionString = builder.Configuration.GetValue<string>("Blob:ConnectionString");
+
+if(String.IsNullOrWhiteSpace(blobConnectionString))
+{
+    throw new ApplicationException("App Setting Blob:ConnectionString is required, and cannot be empty.");
+}
+
+var blobSource = new BlobSource(blobConnectionString, "myblobcontainer");
+builder.Services.AddSingleton<IBlobSource>(blobSource);
+
 var app = builder.Build();
 
 app.MapControllers();
